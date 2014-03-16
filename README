@@ -1,0 +1,23 @@
+This repository contains the linux drivers for DMA, an example of architecture exploiting multiple DMAs with a loop-back connection, and the SD card files to boot the Zedboard.
+
+drivers: 
+- The folder contains the driver and the Makefile to include it in the kernel compilation. At the moment the driver is not an external module.
+- The files must be copied in $XILINX_LINUX_KERNEL_FOLDER$/drivers/dma/xilinx
+- The driver will be compiled with the kernel in this way.
+
+multiDMA_architecture.zip: Contains the project created with Vivado HLS.
+
+example:
+- In this folder there is a simple benchmark that copies data between two memory locations and compares the data transfer time with the one of the ARM processor.
+- test.sh perform the benchmark on a set of different inputs.
+- The output is the time needed to move data using 0, 1, 2, 3 or 4 DMAs.
+- The benchmark performs a check to see if the data is copied in the right way (NOTE: it works only when using 1 DMA)
+- All the times are collected and written to report.dat
+- An R script to generate the plot (similar to the one) included in the folder starting from report.dat
+- The plot included in the folded represents the performance we got when we tested the zed board using 4 DMAs.
+
+bootFiles:
+- Files needed to build the boot image.
+
+SD:
+- These are the files to copy on the SD.

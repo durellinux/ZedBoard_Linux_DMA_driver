@@ -1,0 +1,11 @@
+for test in {1..10}
+do
+	for data in 120 240 360 1200 2400 3600 12000 24000 36000 120000 240000 360000 1200000 3600000 2400000 12000000 24000000 36000000
+	do
+		for dma in {1..4}
+		do
+			./dmaBench.elf $data $dma
+		done
+	done
+
+done
