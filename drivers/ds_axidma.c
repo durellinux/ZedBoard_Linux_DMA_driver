@@ -136,11 +136,10 @@ static int ds_axidma_open(struct inode *i, struct file *f)
 {
 	/* printk(KERN_INFO "<%s> file: open()\n", MODULE_NAME); */
 	struct ds_axidma_device *obj_dev = get_elem_from_list_by_inode(i);
-	if (check_mem_region(obj_dev->bus_addr, obj_dev->bus_size))
+	if (!request_mem_region(obj_dev->bus_addr, obj_dev->bus_size, MODULE_NAME))
 	{
 		return -1;
-	}
-	request_mem_region(obj_dev->bus_addr, obj_dev->bus_size, MODULE_NAME);
+	}	
 	obj_dev->virt_bus_addr = (char *) ioremap_nocache(obj_dev->bus_addr, obj_dev->bus_size);
 	return 0;
 }
